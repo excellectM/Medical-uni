@@ -2137,6 +2137,11 @@
   dependencies:
     "@types/node" "*"
 
+"@vant/weapp@^1.11.7":
+  version "1.11.7"
+  resolved "https://registry.npmmirror.com/@vant/weapp/-/weapp-1.11.7.tgz"
+  integrity sha512-Rwn9BBnb4kHSV4XmvBicwtd42J+amEUfnFDcXJsGNPNX4a9c/DoT6YLsm4X1wB2+sQbdiQsbFBLAvGRBxCkD8g==
+
 "@vue/babel-helper-vue-jsx-merge-props@^1.2.1":
   version "1.2.1"
   resolved "https://registry.npmmirror.com/@vue/babel-helper-vue-jsx-merge-props/-/babel-helper-vue-jsx-merge-props-1.2.1.tgz"
