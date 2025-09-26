@@ -32,7 +32,7 @@
         </view>
         <view class="item-code">
           <text class="code-label">状态码:</text>
-          <text class="code-value error">403</text>
+          <text class="code-value">403</text>
           <text class="code-expect">预期:403</text>
         </view>
       </view>
@@ -51,7 +51,7 @@
         </view>
         <view class="item-code">
           <text class="code-label">状态码:</text>
-          <text class="code-value error">403</text>
+          <text class="code-value">403</text>
           <text class="code-expect">预期:403</text>
         </view>
       </view>
@@ -70,7 +70,7 @@
         </view>
         <view class="item-code">
           <text class="code-label">状态码:</text>
-          <text class="code-value error">403</text>
+          <text class="code-value">403</text>
           <text class="code-expect">预期:403</text>
         </view>
       </view>
@@ -89,7 +89,7 @@
         </view>
         <view class="item-code">
           <text class="code-label">状态码:</text>
-          <text class="code-value error">403</text>
+          <text class="code-value">403</text>
           <text class="code-expect">预期:403</text>
         </view>
       </view>
@@ -133,6 +133,7 @@ import tooltip from '../tooltip.vue'
 		data() {
 			return {
         isRefreshing:false,
+        countdown: 5,
 				statusMap: {
 				        0: { text: '良好', className: 'status-good' },
 				        1: { text: '缓慢', className: 'status-slow' },
@@ -153,16 +154,29 @@ import tooltip from '../tooltip.vue'
 		},
 		methods: {
       handleRefreshClick(){
+        // 清除可能存在的旧定时器，防止多个定时器同时运行
+                if (this.timer) {
+                  clearInterval(this.timer);
+                }
         this.isRefreshing = true;
         this.countdown = 5
-        const timer = setInterval(() =>{
-          this.countdown --;
-          if(this.countdown <= 0){
-            clearInterval(timer);
-            this.isRefreshing = false
+          // 向父组件传递“正在刷新”的状态（true）
+          this.$emit('trigger-retry', true);
+           this.timer = setInterval(() =>{
+            this.countdown --;
+            if(this.countdown <= 0){
+              clearInterval(this.timer);
+              this.isRefreshing = false
+              this.$emit('trigger-retry', false);
+            }
+          },1000);
+
+      },
+      beforeDestroy() {
+            if (this.timer) {
+              clearInterval(this.timer);
+            }
           }
-        },1000);
-      }
 		},
     // watch:{
     //   isRefreshing(newVal){
@@ -257,13 +271,14 @@ import tooltip from '../tooltip.vue'
 
 /* 状态标签颜色（核心调整） */
 .status {
-  font-size: 18rpx;
+  font-size: 11rpx;
   padding: 3rpx 10rpx;
   border-radius: 4rpx;
   color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
+  border-radius: 10%;
 }
 .status-good {
   background-color: #00E0D6; /* 良好-绿色 */
@@ -301,6 +316,7 @@ import tooltip from '../tooltip.vue'
 }
 .code-value {
   font-size: 16rpx;
+  color: #999;
 }
 .error {
   color: #ff5722;

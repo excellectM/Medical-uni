@@ -1,20 +1,16 @@
-<!-- tooltip.vue 简化版 -->
 <template>
-  <!-- 根元素直接用 .tooltip 类名，与页面样式对应 -->
   <view class="tooltip"
     @mouseenter="showTip = true"
     @mouseleave="showTip = false"
     @touchstart="showTip = true"
-    @touchend="showTip = false"
-  >
-    <!-- 问号图标（直接写在根元素内，无需额外容器） -->
-    <text class="tooltip-icon">?</text>
-    <!-- 悬浮提示框 -->
-    <view class="tooltip-text" v-show="showTip">
-      {{ tipText }}
-    </view>
-  </view>
+    @touchend="showTip = false">
+   <text class="tooltip-icon">?</text>
+   <view class="tooltip-text" v-show="showTip">
+     {{ tipText }}
+   </view>
+ </view>
 </template>
+
 
 <script>
 export default {
@@ -34,9 +30,7 @@ export default {
 };
 </script>
 
-<!-- 去掉 scoped，让页面样式能生效（或用 ::v-deep，但简化方案更直接） -->
 <style>
-/* 提示框定位容器（根元素） */
 .tooltip {
   position: relative;
   display: inline-block;

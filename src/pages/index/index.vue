@@ -10,7 +10,7 @@
 			<!-- 圆形logo图片 -->
 			<image
 				class="logo"
-				src="/static/logo.png"
+				src="/static/distinctclinic-icon.png"
 				mode="widthFix"
 				alt="医生logo"
 			></image>
@@ -28,7 +28,7 @@
          </view>
          <!-- 设备卡片 -->
          <view class="card-wrapper">
-           <equiementcard />
+           <equiementcard :show-tip="showTip" />
          </view>
        </view>
      </view>
@@ -67,7 +67,7 @@
 	      this.currentTime = time;
 	    });
 	  },
-	  onUnload() { // 修复此处的语法错误
+	  onUnload() {
 	    // 清除定时器
 	    if (this.timer) {
 	      clearInterval(this.timer);

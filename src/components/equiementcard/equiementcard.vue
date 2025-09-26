@@ -62,7 +62,7 @@
         </view>
       </view>
     </view>
-    <view class="tip-container">
+    <view class="tip-container" v-if="showTip">
           <view class="tip-icon">
             <text class="icon-text">i</text>
           </view>
@@ -76,6 +76,12 @@
 
 <script>
 export default {
+  props:{
+    showTip:{
+      type:Boolean,
+      default:true
+    }
+  },
   data() {
     return {
       deviceBrand: '小米',
@@ -88,6 +94,11 @@ export default {
       wifiStatus: '关',
     };
   },
+  watch: {
+    showTip(newVal) {
+      console.log('equire子组件接收到的showTip:', newVal);
+    }
+  }
 };
 </script>
 
@@ -101,6 +112,9 @@ export default {
   padding: 20rpx;
 }
 .card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin-bottom: 15rpx;
 }
 .card-title {
@@ -129,7 +143,7 @@ export default {
 /* 设备项内部样式 */
 .item-name {
   font-size: 20rpx;
-  color: #333;
+  color: #999;
   margin-bottom: 12rpx;
   display: block;
 }
@@ -139,7 +153,7 @@ export default {
 }
 .value-text {
   font-size: 18rpx;
-  color: #666;
+  color:#333;
 }
 
 /* 提示文本样式 */

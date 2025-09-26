@@ -8,7 +8,7 @@
 <style>
 	/*每个页面公共css */
   body{
-    background-color: #dcdcdc;
+    background-color: #f5f5f5;
       margin: 0;
       padding: 0;
   }

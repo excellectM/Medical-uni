@@ -24,7 +24,8 @@
         <text class="item-name">信号强度</text>
         <view class="item-value">
           <text class="value-text">{{ signalStrength }}</text>
-          <text class="signal-status">{{ signalStatus }}</text>
+          <text class="signal-status" v-if="showTip" >{{ signalStatus }}</text>
+          <text class="value-text" v-else >({{ signalStatus }})</text>
         </view>
       </view>
       <!-- 是否是弱网环境 -->
@@ -64,12 +65,11 @@ export default {
       isWeakNetwork: '否',
     };
   },
-  watch: {
-
-    showTip(newVal) {
-      console.log('子组件接收到的showTip:', newVal); // 调试日志
-    }
-  }
+  // watch: {
+  //   showTip(newVal) {
+  //     console.log('子组件接收到的showTip:', newVal);
+  //   }
+  // }
 };
 </script>
 
@@ -83,7 +83,10 @@ export default {
   padding: 20rpx;
 }
 .card-header {
-  margin-bottom: 15rpx;
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+ margin-bottom: 15rpx;
 }
 .card-title {
   font-size: 24rpx;
@@ -111,7 +114,7 @@ export default {
 /* 设备项内部样式 */
 .item-name {
   font-size: 20rpx;
-  color: #333;
+  color: #999;
   margin-bottom: 12rpx;
   display: block;
 }
@@ -121,7 +124,7 @@ export default {
 }
 .value-text {
   font-size: 18rpx;
-  color: #666;
+  color: #333;
 }
 
 /* 信号状态样式 */
@@ -129,7 +132,8 @@ export default {
   margin-left: 8rpx;
   background-color: #ff5722;
   color: #fff;
-  font-size: 16rpx;
+  font-size: 11rpx;
+  border-radius: 10%;
   padding: 2rpx 8rpx;
   border-radius: 4rpx;
 }
@@ -147,15 +151,15 @@ export default {
 .tip-icon {
   width: 24rpx;
   height: 24rpx;
-  background-color: transparent; /* 内部透明，无填充 */
+  background-color: transparent;
   color: #ff7f00;
-  border: 2rpx solid #ff7f00; /* 橙色外边框 */
+  border: 2rpx solid #ff7f00;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   margin-right: 10rpx;
-  flex-shrink: 0; /* 防止图标被压缩 */
+  flex-shrink: 0;
 }
 .icon-text {
   font-size: 16rpx;
