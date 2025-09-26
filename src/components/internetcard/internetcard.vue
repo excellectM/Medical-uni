@@ -35,7 +35,7 @@
         </view>
       </view>
     </view>
-    <view class="tip-container">
+    <view class="tip-container" v-if="showTip">
       <view class="tip-icon">
         <text class="icon-text">i</text>
       </view>
@@ -49,6 +49,12 @@
 
 <script>
 export default {
+  props:{
+    showTip:{
+      type:Boolean,
+      default:true
+    }
+  },
   data() {
     return {
       networkType: 'WIFI',
@@ -58,6 +64,12 @@ export default {
       isWeakNetwork: '否',
     };
   },
+  watch: {
+
+    showTip(newVal) {
+      console.log('子组件接收到的showTip:', newVal); // 调试日志
+    }
+  }
 };
 </script>
 

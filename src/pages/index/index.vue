@@ -17,19 +17,22 @@
 			<text class="doctorName">李中国医生</text>
 			<text class="currentTime">{{currentTime}}</text>
 		</view>
-     <!-- 连通性测试卡片 -->
- <view>
-   <testcard/>
- </view>
- <!-- 网络情况卡片 -->
- <view>
-   <internetcard/>
- </view>
- <view>
-    <equiementcard/>
-  </view>
- </view>
-</template>
+   <view class="card-container">
+         <!-- 连通性测试卡片 -->
+         <view class="card-wrapper">
+           <testcard @trigger-retry="handleRetry" />
+         </view>
+         <!-- 网络情况卡片 -->
+         <view class="card-wrapper">
+           <internetcard :show-tip="showTip" />
+         </view>
+         <!-- 设备卡片 -->
+         <view class="card-wrapper">
+           <equiementcard />
+         </view>
+       </view>
+     </view>
+   </template>
 
 <script>
   import { getCurrentTime, createTimeTimer } from '@/utils/getlocalTime.js';
@@ -50,8 +53,10 @@
 	      timer: null,
         userInfo:{
           name:'中国医生',
-          id:'1234'
-        }
+          id:'1234',
+        },
+        // 控制卡片提示层的显示状态
+        showTip:true
 
 	    };
 	  },
@@ -67,7 +72,13 @@
 	    if (this.timer) {
 	      clearInterval(this.timer);
 	    }
-	  }
+	  },
+    methods:{
+      handleRetry(isRefreshing){
+      this.showTip = !isRefreshing;
+      console.log('父组件showTip状态:', this.showTip);
+      }
+    }
 	};
 </script>
 
