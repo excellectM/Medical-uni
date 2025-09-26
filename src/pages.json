@@ -9,8 +9,9 @@
 	],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
-		"navigationBarTitleText": "网络诊断",
+		// "navigationBarTitleText": "网络诊断",
 		"navigationBarBackgroundColor": "#F8F8F8",
-		"backgroundColor": "#F8F8F8"
+		"backgroundColor": "#F8F8F8",
+    "width": "100%"
 	}
 }
